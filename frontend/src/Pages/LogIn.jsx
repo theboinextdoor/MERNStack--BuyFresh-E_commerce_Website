@@ -5,34 +5,53 @@ import { LuInstagram } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { GoEyeClosed } from "react-icons/go";
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import login_animation from "../assest/login-animation.gif";
 
 const LogIn = () => {
-  const [showPassword , setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const email = useRef();
+  const password = useRef();
 
   const handleShowPassword = () => {
-    setShowPassword((prev) => !prev)
-  }
+    setShowPassword((prev) => !prev);
+  };
+
+  const handleSubmitButton = (e) => {
+    e.preventDefault();
+    console.log(email.current.value)
+    console.log(password.current.value)
 
 
-  
+    alert("Logged in");
+
+    email.current.value = ""
+    password.current.value = ""
+
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300 p-8">
-      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-lg w-full max-w-md drop-shadow-3xl">
-        <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">
+      <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-lg w-full max-w-md drop-shadow-3xl ">
+        {/* Animation logo */}
+
+        <div className="flex justify-center items-center mb-2">
+          <div className="w-20 overflow-hidden rounded-full shadow-md drop-shadow-lg flex justify-center items-center">
+            <img src={login_animation} alt="logoin-animation" />
+          </div>
+        </div>
+
+        <div className="font-medium self-center text-lg sm:text-xl uppercase text-gray-800">
           Login To Your Account
         </div>
 
         {/* for Social Media Log in  */}
         <div className="flex justify-center items-center gap-4 text-xl mt-4 cursor-pointer">
-          <BsFacebook/>
+          <BsFacebook />
           <FcGoogle />
           <IoLogoTwitter />
           <LuInstagram />
         </div>
-
-
 
         {/* Log in with userName and Password */}
         <div className="relative mt-10 h-px bg-gray-300">
@@ -43,7 +62,7 @@ const LogIn = () => {
           </div>
         </div>
         <div className="mt-10">
-          <htmlForm action="#">
+          <form action="" onSubmit={handleSubmitButton}>
             <div className="flex flex-col mb-6">
               <label
                 htmlFor="email"
@@ -70,13 +89,12 @@ const LogIn = () => {
                   id="email"
                   type="email"
                   name="email"
+                  ref={email}
                   className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                   placeholder="E-Mail Address"
                 />
               </div>
             </div>
-
-
 
             {/* Password field */}
             <div className="flex flex-col mb-6">
@@ -104,22 +122,25 @@ const LogIn = () => {
                 </div>
 
                 <div className="flex ">
-                <input
-                  id="password"
-                  type= {showPassword ? "text" : "password"}
-                  name="password"
-                  className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
-                  placeholder="Password"
-                />
-                <div className="flex items-center absolute right-4 top-3 text-xl" onClick={handleShowPassword}>
-                  {showPassword ? <GoEyeClosed />  :   <FaEye /> }
-                </div>
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    ref={password}
+                    className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                    placeholder="Password"
+                  />
+                  <div
+                    className="flex items-center absolute right-4 top-3 text-xl"
+                    onClick={handleShowPassword}
+                  >
+                    
+                    {showPassword ? <FaEye />  :  <GoEyeClosed />}
+                  </div>
                 </div>
               </div>
             </div>
 
-
-           
             <div className="flex items-center mb-6 -mt-4">
               <div className="flex ml-auto">
                 <a
@@ -130,8 +151,6 @@ const LogIn = () => {
                 </a>
               </div>
             </div>
-
-
 
             <div className="flex w-full">
               <button
@@ -154,7 +173,7 @@ const LogIn = () => {
                 </span>
               </button>
             </div>
-          </htmlForm>
+          </form>
         </div>
         <div className="flex justify-center items-center mt-6">
           <a
@@ -175,7 +194,9 @@ const LogIn = () => {
                 <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
               </svg>
             </span>
-            <Link to="/signup"><span className="ml-2">You don&apos;t have an account?</span></Link>
+            <Link to="/signup">
+              <span className="ml-2">You don&apos;t have an account?</span>
+            </Link>
           </a>
         </div>
       </div>

@@ -2,11 +2,13 @@ import { useRef, useState } from "react";
 import login_animation from "../assest/login-animation.gif";
 import { BiHide } from "react-icons/bi";
 import { BiSolidShow } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { ImagetoBase64 } from "../utility/imagetoBase64";
 
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirPassword, setShowConfirmPassword] = useState(false);
 
@@ -24,6 +26,12 @@ const SignUp = () => {
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
+
+  // const handleUploadProfileButton = async (e) => {
+  //     console.log(e.target.value)
+  //     const data = await ImagetoBase64(e.target.file[0]) 
+  //     console.log(data)
+  // }
 
   const handleSubmitButton = (e) => {
     e.preventDefault();
@@ -44,6 +52,7 @@ const SignUp = () => {
       confirmPassword.current.value = "";
 
       alert("Succesfully Signed Up");
+      navigate("/login");
     } else {
       alert("Password didn't match");
     }
@@ -52,8 +61,15 @@ const SignUp = () => {
   return (
     <div className="p-3 md:p-4">
       <div className="w-full max-w-sm bg-white m-auto flex justify-center flex-col items-center p-4 ">
-        <div className="w-20 overflow-hidden rounded-full shadow-md drop-shadow-md">
+        <div className="w-24 overflow-hidden rounded-full shadow-md drop-shadow-md relative">
           <img src={login_animation} alt="logoin-animation" />
+
+          <label htmlFor="profileImage">
+            <div className="absolute bottom-0 h-1/3 bg-slate-500 w-full text-center">
+              <p className="text-sm p-1 text-white cursor-pointer">Upload</p>
+            </div>
+            <input type="file" id="profileImage" accept="image/*" className="hidden" />
+          </label>
         </div>
 
         <div>
