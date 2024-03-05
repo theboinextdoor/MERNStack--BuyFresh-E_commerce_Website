@@ -101,13 +101,15 @@ const Header = () => {
 
             {/* LogOut and New Product pannel */}
             {showMenu && (
-              <div className="absolute right-3 top-14 bg-white py-3 px-2 shadow drop-shadow-lg">
-                <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
+              <div className="absolute right-3 top-14 bg-white py-3 px-2 shadow drop-shadow-lg flex flex-col">
+               <Link to={"/newProducts"}> <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
                   New Product
-                </p>
+                </p></Link>
+                <Link to={"/login"}>
                 <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
                   Log Out
                 </p>
+                </Link>
               </div>
             )}
           </div>
