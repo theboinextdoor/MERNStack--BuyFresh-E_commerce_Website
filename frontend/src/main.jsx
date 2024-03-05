@@ -11,6 +11,7 @@ import Contact from "./Pages/Contact.jsx"
 import LogIn from "./Pages/LogIn.jsx";
 import Cart from "./Pages/Cart.jsx";
 import NewProducts from "./Pages/NewProducts.jsx";
+import SignUp from "./Pages/SignUp.jsx";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
     {
       path: "/cart",
       element : <Cart />
+    },
+    {
+      path: "/signup",
+      element : <SignUp />
     },
 
     ]

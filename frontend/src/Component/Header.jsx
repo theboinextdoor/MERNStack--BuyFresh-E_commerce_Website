@@ -15,8 +15,8 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50">
-      {/* Company Icon  */}
+    <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
+      {/* Company Icon  */} 
       <div className="flex items-center h-full justify-between">
         <Link to="/">
           <div className="h-10 sm:w-20 ">

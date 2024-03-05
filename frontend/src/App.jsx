@@ -8,7 +8,7 @@ const App = () => {
     <>
       <Header />
       <Suspense fallback={<Loading />}>
-        <main className="pt-16">
+        <main className="pt-16 bg-slate-100 min-h-screen">
           <Outlet />
         </main>
       </Suspense>
