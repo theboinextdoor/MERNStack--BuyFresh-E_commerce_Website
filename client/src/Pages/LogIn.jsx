@@ -17,6 +17,7 @@ const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const email = useRef();
   const password = useRef();
+  const [existEmail , setEmailExist] = useState(true)
 
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -24,27 +25,27 @@ const LogIn = () => {
 
   const handleSubmitButton = async (e) => {
     e.preventDefault();
-
+    
     const formData = {
       email: email.current.value,
       password: password.current.value,
     };
-
+    
     try {
       const response = await axios.post(`${BACKEND_URL}/login`, formData);
-      console.log("Response data:", response.data);
-
+      console.log(response.data.alert)
       toast.success("Logged in");
+      email.current.value = "";
+      password.current.value = "";
+      naviagte("/")
     } catch (error) {
       console.error("Login error:", error);
-      toast.error("Sign up first");
-      naviagte("/signup")
+      setEmailExist((prev) => !prev)
     }
-
-    email.current.value = "";
-    password.current.value = "";
     console.log(email.current.value);
     console.log(password.current.value);
+
+   
   };
 
   return (
@@ -157,6 +158,9 @@ const LogIn = () => {
                     {showPassword ? <FaEye /> : <GoEyeClosed />}
                   </div>
                 </div>
+              </div>
+              <div className="flex justify-center it">
+                {existEmail ? <></>   : <p className="text-red-400 mt-1">Email doesn&apos;t exist</p>}
               </div>
             </div>
 

@@ -84,12 +84,13 @@ app.post("/signup", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+    console.log(req.body)
     const { email } = req.body;
 
     try {
         const existingUser = await userModel.findOne({ email: email });
         if (existingUser) {
-            res.send({ message: "Logged in", alert: true });
+            res.send({ message: "Logged in", alert: true , data: req.body});
         } else {
             return res.status(404).json({ message: "User is not signed up", alert: false });
         }
