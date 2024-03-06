@@ -18,6 +18,7 @@ const LogIn = () => {
   const email = useRef();
   const password = useRef();
   const [existEmail , setEmailExist] = useState(true)
+  const [notCorrectPassword , setNotCorrectPassword] = useState(true)
 
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -38,9 +39,19 @@ const LogIn = () => {
       email.current.value = "";
       password.current.value = "";
       naviagte("/")
+      
+    
     } catch (error) {
       console.error("Login error:", error);
-      setEmailExist((prev) => !prev)
+      console.log(error.response.data.message)
+      if(error.response.data.message === `Password didn't match`){
+        setNotCorrectPassword(false)
+        setEmailExist(true)
+        
+      }else {
+        setEmailExist(false)
+        setNotCorrectPassword(true)
+      }
     }
     console.log(email.current.value);
     console.log(password.current.value);
@@ -161,6 +172,7 @@ const LogIn = () => {
               </div>
               <div className="flex justify-center it">
                 {existEmail ? <></>   : <p className="text-red-400 mt-1">Email doesn&apos;t exist</p>}
+                {notCorrectPassword ?<></>:  <p className="text-red-400 mt-1">Password did&apos;t match</p>  }
               </div>
             </div>
 

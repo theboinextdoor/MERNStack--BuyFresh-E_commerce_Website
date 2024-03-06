@@ -85,12 +85,19 @@ app.post("/signup", async (req, res) => {
 
 app.post("/login", async (req, res) => {
     console.log(req.body)
-    const { email } = req.body;
+    const { email , password } = req.body;
+    console.log(`password from client ${password}`)
 
     try {
         const existingUser = await userModel.findOne({ email: email });
-        if (existingUser) {
-            res.send({ message: "Logged in", alert: true , data: req.body});
+        const userPassword  = await userModel.findOne({$and : [{email: email} , {password : password}]})
+        console.log(userPassword)
+        if (existingUser ) {
+            if(userPassword){
+                res.send({ message: "Logged in", alert: true , data: req.body});
+            }else{
+                return res.status(404).json({ message: "Password didn't match", alert: false });
+            }
         } else {
             return res.status(404).json({ message: "User is not signed up", alert: false });
         }
