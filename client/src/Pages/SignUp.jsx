@@ -58,9 +58,10 @@ const SignUp = () => {
           confirmPassword.current.value = "";
 
           navigate("/login");
-          console.log("Button Clicked");
           toast.success(response.data.message);
         }
+
+
       } catch (error) {
         toast.error("Email already exists");
         console.error("Error signing up:", error);
@@ -121,6 +122,7 @@ const SignUp = () => {
             name="email"
             id="email"
             ref={email}
+            autoComplete="username"
             className="mt-1 w-full mb-2 bg-slate-200 px-2 py-1 rounded-md outline-none "
             required
           />
@@ -132,6 +134,7 @@ const SignUp = () => {
               name="password"
               id="password"
               ref={password}
+              autoComplete="new-password"
               className="w-full  bg-slate-200 outline-none "
               required
             />
@@ -149,6 +152,7 @@ const SignUp = () => {
               type={showConfirPassword ? "text" : "password"}
               name="confirmPassword"
               id="confirmPassword"
+              autoComplete="new-password"
               ref={confirmPassword}
               className="w-full bg-slate-200 outline-none "
               required

@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 
 
 
-//*********** database connection
+//************ database connection
 
 mongoose.set("strictQuery", false)
 mongoose.connect(uri)
@@ -31,7 +31,7 @@ mongoose.connect(uri)
 
 
 
-//*********** */ Creating the Schema 
+//************ Creating the Schema 
 const usersSchema = mongoose.Schema({
     firstName: String ,
     middleName: String ,
@@ -57,26 +57,49 @@ const userModel = mongoose.model("user", usersSchema)
 
 
 
-//*********** API:-
+//*********** Routing  :- 
 app.get("/", (req, res) => {
     res.send("Server is Running Here......")
 })
 
 
 
-app.post("/signup", async (req, res) => {                         //! Keypoint
-    console.log(req.body)
-    const {email } = req.body;
-    
-    const existingUSer = await userModel.findOne({email : email})
-    if(existingUSer) {
-        return res.status(400).json({ message: "Email already exists" , alert: false});
-    }else{
-        const data = await userModel(req.body)
-        const save = data.save();
-        res.send({message : "Succesfully sign up"  , alert: false})
+//*********** API settings :- 
+app.post("/signup", async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const existingUser = await userModel.findOne({ email: email });
+        if (existingUser) {
+            return res.status(400).json({ message: "Email already exists", alert: false });
+        } else {
+            const newUser = new userModel(req.body);
+            await newUser.save();
+            res.send({ message: "Successfully signed up", alert: false });
+        }
+    } catch (error) {
+        console.error("Error signing up:", error);
+        return res.status(500).json({ message: "Internal server error", alert: false });
     }
-})
+});
+
+app.post("/login", async (req, res) => {
+    const { email } = req.body;
+
+    try {
+        const existingUser = await userModel.findOne({ email: email });
+        if (existingUser) {
+            res.send({ message: "Logged in", alert: true });
+        } else {
+            return res.status(404).json({ message: "User is not signed up", alert: false });
+        }
+    } catch (error) {
+        console.error("Error logging in:", error);
+        return res.status(500).json({ message: "Internal server error", alert: false });
+    }
+});
+
+
 
 
 app.listen(PORT, () => console.log(`Server is running on PORT num:- ${PORT}`))

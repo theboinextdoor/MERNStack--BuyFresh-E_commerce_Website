@@ -6,34 +6,47 @@ import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { GoEyeClosed } from "react-icons/go";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import login_animation from "../assest/login-animation.gif";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const LogIn = () => {
-
-  //! ALl the Hooks starts here
+  const BACKEND_URL = import.meta.env.VITE_SERVER_URL;
+  const naviagte = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const email = useRef();
   const password = useRef();
-  //! ALl the Hooks ends here
-  
-  
-  //! ALl the functions starts here
+
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
   };
-  
-  const handleSubmitButton = (e) => {
+
+  const handleSubmitButton = async (e) => {
     e.preventDefault();
-    console.log(email.current.value);
-    console.log(password.current.value);
-    
-    alert("Logged in");
-    
+
+    const formData = {
+      email: email.current.value,
+      password: password.current.value,
+    };
+
+    try {
+      const response = await axios.post(`${BACKEND_URL}/login`, formData);
+      console.log("Response data:", response.data);
+
+      toast.success("Logged in");
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Sign up first");
+      naviagte("/signup")
+    }
+
     email.current.value = "";
     password.current.value = "";
+    console.log(email.current.value);
+    console.log(password.current.value);
   };
-  //! ALl the functions ends here
-  
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300 p-8">
       <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-lg w-full max-w-md drop-shadow-3xl ">
