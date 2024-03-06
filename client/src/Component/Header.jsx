@@ -107,7 +107,7 @@ const Header = () => {
                 </p></Link>
                 <Link to={"/login"}>
                 <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
-                  Log Out
+                  Log In
                 </p>
                 </Link>
               </div>
