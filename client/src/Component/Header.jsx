@@ -2,17 +2,30 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { RiUser3Fill } from "react-icons/ri";
 import { useState } from "react";
+import {useSelector ,useDispatch} from "react-redux"
+import { FaUserAltSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
+
 
 // files
 import logo from "../assest/logo.png";
+import { userAction } from "../redux";
+
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const userData = useSelector((store) => store.user)
   const [menu, setMenu] = useState("Home");
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleLogOutButton = () => {
+  const handleLoginButton = () => {
     setShowMenu((prev) => !prev);
   };
+
+  const handleLogOutButton = () => {
+    dispatch(userAction.reduxLogOut())
+    toast.error("You have been logged out")
+  }
 
   return (
     <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
@@ -94,9 +107,11 @@ const Header = () => {
               </div>
             </Link>
           </div>
-          <div onClick={handleLogOutButton}>
+          <div onClick={handleLoginButton}>
             <div className="text-xl md:text-2xl text-black cursor-pointer active:text-slate-400 ">
-              <RiUser3Fill />
+              {userData.user.email ? <RiUser3Fill /> :     <FaUserAltSlash />}
+            
+              
             </div>
 
             {/* LogOut and New Product pannel */}
@@ -104,11 +119,11 @@ const Header = () => {
               <div className="absolute right-3 top-14 bg-white py-3 px-2 shadow drop-shadow-lg flex flex-col">
                <Link to={"/newProducts"}> <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
                   New Product
-                </p></Link>
-                <Link to={"/login"}>
-                <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
-                  Log In
                 </p>
+                </Link>
+                <Link to={"/login"} className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
+                 {userData.user.email !="" ? <p onClick={handleLogOutButton}>Logout</p> : <p>LogIn</p> }
+               
                 </Link>
               </div>
             )}

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter , } from "react-router-dom";
 import App from "./App.jsx";
 import "./index.css";
+import {Provider} from "react-redux"
 
 import Home from "./Pages/Home.jsx";
 import Menu from "./Pages/Menu.jsx";
@@ -12,6 +13,7 @@ import LogIn from "./Pages/LogIn.jsx";
 import Cart from "./Pages/Cart.jsx";
 import NewProducts from "./Pages/NewProducts.jsx";
 import SignUp from "./Pages/SignUp.jsx";
+import userStore from "./redux/index.js";    //* this is a redux file
 
 
 const router = createBrowserRouter([
@@ -59,7 +61,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Provider store={userStore}>
      <RouterProvider router={router} />
+     </Provider>
   </React.StrictMode>
 
 );

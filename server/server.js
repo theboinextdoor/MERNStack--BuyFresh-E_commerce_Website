@@ -10,7 +10,7 @@ const uri = `${process.env.MONGODB_URL}`
 
 const app = express();
 app.use(cors());
-app.use(express.json({ limit: "10mb" }))             //! KeyPoint
+app.use(express.json({ limit: "100mb" }))             //! KeyPoint
 
 
 const PORT = process.env.PORT || 8080;
@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 
 
 
-//************ database connection
+//************ database connection :- 
 
 mongoose.set("strictQuery", false)
 mongoose.connect(uri)
@@ -31,7 +31,7 @@ mongoose.connect(uri)
 
 
 
-//************ Creating the Schema 
+//************ Creating the Schema :- 
 const usersSchema = mongoose.Schema({
     firstName: String ,
     middleName: String ,
@@ -65,6 +65,7 @@ app.get("/", (req, res) => {
 
 
 //*********** API settings :- 
+//* signUp API
 app.post("/signup", async (req, res) => {
     const { email } = req.body;
 
@@ -83,6 +84,8 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+
+//* login API
 app.post("/login", async (req, res) => {
     console.log(req.body)
     const { email , password } = req.body;

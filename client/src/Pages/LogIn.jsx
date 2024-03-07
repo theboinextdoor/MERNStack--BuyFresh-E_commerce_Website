@@ -7,18 +7,22 @@ import { FaEye } from "react-icons/fa";
 import { GoEyeClosed } from "react-icons/go";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import login_animation from "../assest/login-animation.gif";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { userAction } from "../redux";
 
 const LogIn = () => {
+
+  const dispatch = useDispatch();
   const BACKEND_URL = import.meta.env.VITE_SERVER_URL;
   const naviagte = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const email = useRef();
   const password = useRef();
-  const [existEmail , setEmailExist] = useState(true)
-  const [notCorrectPassword , setNotCorrectPassword] = useState(true)
+  const [existEmail, setEmailExist] = useState(true);
+  const [notCorrectPassword, setNotCorrectPassword] = useState(true);
 
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -26,37 +30,42 @@ const LogIn = () => {
 
   const handleSubmitButton = async (e) => {
     e.preventDefault();
-    
+
     const formData = {
       email: email.current.value,
       password: password.current.value,
     };
-    
+
     try {
       const response = await axios.post(`${BACKEND_URL}/login`, formData);
-      console.log(response.data.alert)
-      toast.success("Logged in");
+      console.log(response.data);
+      toast.success("Log in succesfully");
+      
+
+      //*reducer from redux file
+      dispatch(userAction.reduxLogIn(response.data))
+
+
+
+      //*refresh the input field
       email.current.value = "";
       password.current.value = "";
-      naviagte("/")
-      
-    
+
+      setTimeout(() => {
+
+        naviagte("/");
+      }, 1000);
     } catch (error) {
       console.error("Login error:", error);
-      console.log(error.response.data.message)
-      if(error.response.data.message === `Password didn't match`){
-        setNotCorrectPassword(false)
-        setEmailExist(true)
-        
-      }else {
-        setEmailExist(false)
-        setNotCorrectPassword(true)
+      console.log(error.response.data.message);
+      if (error.response.data.message === `Password didn't match`) {
+        setNotCorrectPassword(false);
+        setEmailExist(true);
+      } else {
+        setEmailExist(false);
+        setNotCorrectPassword(true);
       }
     }
-    console.log(email.current.value);
-    console.log(password.current.value);
-
-   
   };
 
   return (
@@ -171,8 +180,16 @@ const LogIn = () => {
                 </div>
               </div>
               <div className="flex justify-center it">
-                {existEmail ? <></>   : <p className="text-red-400 mt-1">Email doesn&apos;t exist</p>}
-                {notCorrectPassword ?<></>:  <p className="text-red-400 mt-1">Password did&apos;t match</p>  }
+                {existEmail ? (
+                  <></>
+                ) : (
+                  <p className="text-red-400 mt-1">Email doesn&apos;t exist</p>
+                )}
+                {notCorrectPassword ? (
+                  <></>
+                ) : (
+                  <p className="text-red-400 mt-1">Password did&apos;t match</p>
+                )}
               </div>
             </div>
 
