@@ -21,6 +21,11 @@ const SignUp = () => {
   const confirmPassword = useRef();
   //* ALl the Hooks ends here
 
+ 
+ 
+ 
+ 
+ 
   //* all the functions starts here
   const handleShowButton = () => {
     setShowPassword((prev) => !prev);
@@ -60,8 +65,6 @@ const SignUp = () => {
           navigate("/login");
           toast.success(response.data.message);
         }
-
-
       } catch (error) {
         toast.error("Email already exists");
         console.error("Error signing up:", error);
@@ -73,8 +76,8 @@ const SignUp = () => {
   //* all the functions ends here
 
   return (
-    <div className="p-3 md:p-4">
-      <div className="w-full max-w-sm bg-white m-auto flex justify-center flex-col items-center p-4 ">
+    <div className="p-3 md:p-4 bg-gradient-to-r from-red-200 to-cyan-200">
+      <div className="w-full max-w-sm bg-white m-auto flex justify-center flex-col items-center p-4 rounded-lg  ">
         <div className="w-24 overflow-hidden rounded-full shadow-md drop-shadow-md relative">
           <img src={login_animation} alt="logoin-animation" />
         </div>

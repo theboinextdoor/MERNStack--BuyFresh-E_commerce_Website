@@ -56,8 +56,8 @@ const LogIn = () => {
         naviagte("/");
       }, 1000);
     } catch (error) {
-      console.error("Login error:", error);
-      console.log(error.response.data.message);
+      console.error( error);
+      // console.log(error.response.data.message);
       if (error.response.data.message === `Password didn't match`) {
         setNotCorrectPassword(false);
         setEmailExist(true);
@@ -69,7 +69,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-300 p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-red-200 to-cyan-200z p-8">
       <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-lg w-full max-w-md drop-shadow-3xl ">
         {/* Animation logo */}
         <div className="flex justify-center items-center mb-2">

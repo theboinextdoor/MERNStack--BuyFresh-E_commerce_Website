@@ -5,14 +5,13 @@ import { useState } from "react";
 import {useSelector ,useDispatch} from "react-redux"
 import { FaUserAltSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-
-
-// files
 import logo from "../assest/logo.png";
 import { userAction } from "../redux";
 
 
 const Header = () => {
+  const ADMIN_LOGIN_EMAIL_ = import.meta.env.VITE_ADMIN_EMAIl
+  console.log(ADMIN_LOGIN_EMAIL_)
   const dispatch = useDispatch();
   const userData = useSelector((store) => store.user)
   const [menu, setMenu] = useState("Home");
@@ -117,12 +116,12 @@ const Header = () => {
             {/* LogOut and New Product pannel */}
             {showMenu && (
               <div className="absolute right-3 top-14 bg-white py-3 px-2 shadow drop-shadow-lg flex flex-col">
-               <Link to={"/newProducts"}> <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
+               {userData.user.email === ADMIN_LOGIN_EMAIL_ && <Link to={"/newProducts"}> <p className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
                   New Product
                 </p>
-                </Link>
+                </Link> }
                 <Link to={"/login"} className="whitespace-nowrap cursor-pointer hover:text-indigo-800">
-                 {userData.user.email !="" ? <p onClick={handleLogOutButton}>Logout</p> : <p>LogIn</p> }
+                 {userData.user.email !="" ? <p onClick={handleLogOutButton}> Logout</p> : <p>LogIn</p> }
                
                 </Link>
               </div>

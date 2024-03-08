@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8080;
 
 
 
-//************ database connection :- 
+//! ************ database connection starts :- 
 
 mongoose.set("strictQuery", false)
 mongoose.connect(uri)
@@ -29,26 +29,59 @@ mongoose.connect(uri)
         console.log("Some error Occured", err)
     })
 
+//! ************ database connection ends :- 
 
 
-//************ Creating the Schema :- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! ************ Schema  starts:- 
+
+//* user-signUp and login Schema 
 const usersSchema = mongoose.Schema({
-    firstName: String ,
-    middleName: String ,
-    lastName: String ,
+    firstName: String,
+    middleName: String,
+    lastName: String,
     email: {
         type: String,
         unique: true,
     },
-    password: String ,
-    confirmPassword: String ,
+    password: String,
+    confirmPassword: String,
 })
 
+//* new Product schema 
+const newProductSchema = mongoose.Schema({
+    name: String,
+    category: String,
+    image: String,
+    price: String,
+    description: String
+
+})
+
+//! ************ Schema  ends:- 
 
 
 
-//********** Creating the Model :- 
-const userModel = mongoose.model("user", usersSchema)
 
 
 
@@ -57,14 +90,70 @@ const userModel = mongoose.model("user", usersSchema)
 
 
 
-//*********** Routing  :- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! **********Project Models starts :- 
+
+const userModel = mongoose.model("user", usersSchema)     //* User logIn Schema
+const productModel = mongoose.model("product", newProductSchema)     //* User logIn Schema
+
+//! **********Project Models ends :- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! *********** Routing  starts:- 
+
 app.get("/", (req, res) => {
     res.send("Server is Running Here......")
 })
 
+//! *********** Routing  ends:- 
 
 
-//*********** API settings :- 
+
+
+
+
+
+
+
+
+
+
+
+//! *********** API settings starts  :- 
 //* signUp API
 app.post("/signup", async (req, res) => {
     const { email } = req.body;
@@ -87,28 +176,46 @@ app.post("/signup", async (req, res) => {
 
 //* login API
 app.post("/login", async (req, res) => {
-    console.log(req.body)
-    const { email , password } = req.body;
-    console.log(`password from client ${password}`)
+    const { email, password } = req.body;
+    
 
     try {
         const existingUser = await userModel.findOne({ email: email });
-        const userPassword  = await userModel.findOne({$and : [{email: email} , {password : password}]})
+        const userPassword = await userModel.findOne({ $and: [{ email: email }, { password: password }] })
         console.log(userPassword)
-        if (existingUser ) {
-            if(userPassword){
-                res.send({ message: "Logged in", alert: true , data: req.body});
-            }else{
+        if (existingUser) {
+            if (userPassword) {
+                res.send({ message: "Logged in", alert: true, data: req.body });
+            } else {
                 return res.status(404).json({ message: "Password didn't match", alert: false });
             }
         } else {
             return res.status(404).json({ message: "User is not signed up", alert: false });
         }
     } catch (error) {
-        console.error("Error logging in:", error);
+        // console.error("Error logging in:", error);
         return res.status(500).json({ message: "Internal server error", alert: false });
     }
 });
+
+
+//* Save New Product API:-
+app.post("/NewProducts", async (req, res) => {
+    console.log(req.body)
+    const data = await productModel(req.body)
+    const datasave = await data.save()        //* save the req body into the database
+    res.send({ message: "Succesfully added new Product", alert: true, data: req.body }).status(200);
+})
+
+
+//! *********** API settings ends  :- 
+
+
+
+
+
+
+
 
 
 
