@@ -1,8 +1,10 @@
+import { useParams } from "react-router-dom";
 
 const Menu = () => {
-  return (
-    <div>Menu</div>
-  )
-}
+  const params = useParams();
+  console.log(params);
+  return <div>Menu</div>;
+};
 
-export default Menu
+export default Menu;
+ 

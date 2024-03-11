@@ -138,7 +138,15 @@ const productModel = mongoose.model("product", newProductSchema)     //* User lo
 app.get("/", (req, res) => {
     res.send("Server is Running Here......")
 })
-
+app.get("/products", async (req, res) => {
+  try {
+    const data = await productModel.find({});
+    res.send(JSON.stringify(data));
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).send("Error fetching products");
+  }
+});
 //! *********** Routing  ends:- 
 
 
