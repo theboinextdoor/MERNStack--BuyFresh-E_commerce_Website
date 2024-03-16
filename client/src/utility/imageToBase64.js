@@ -1,7 +1,4 @@
 
-
-
-
 async function ImageToBase64(file) {
     const reader = new FileReader()
     reader.readAsDataURL(file)

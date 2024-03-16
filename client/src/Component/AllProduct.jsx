@@ -11,6 +11,7 @@ const AllProduct = ({ heading  }) => {
   const categoryList = [...new Set(productdata.map((el) => el.category))];
   // console.log(categoryList);
 
+  const [activeProduct , setActiveProduct] = useState("")
   const [datafilter, setDataFilter] = useState([]);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const AllProduct = ({ heading  }) => {
 
   const handleFilterProduct = (category) => {
     setFilterBy(category)
+    setActiveProduct(category)
     const filter = productdata.filter(
       (el) => el.category.toLowerCase() === category.toLowerCase()
     );
@@ -41,7 +43,7 @@ const AllProduct = ({ heading  }) => {
           <ProductFilter
             key={index}
             category={el}
-            isActive={el.toLowerCase() === filterby.toLowerCase()}
+            isActive={el.toLowerCase() === activeProduct.toLowerCase()}
             onClick={() => handleFilterProduct(el)}
           />
         )): (

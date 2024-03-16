@@ -23,6 +23,8 @@ const Header = () => {
     toast.error("You have been logged out");
   };
 
+  const castItemNumber = useSelector((state) => state.product.cartItems)
+
   return (
     <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
       {/* Company Icon  */}
@@ -54,7 +56,7 @@ const Header = () => {
             <Link to="/cart">
               <FaShoppingCart className="" />
               <div className="text-white bg-red-600 absolute -top-1 -right-1 rounded-full m-0 p-0  text-sm text-center h-4 w-4 ">
-                0
+              {castItemNumber.length}
               </div>
             </Link>
           </div>
