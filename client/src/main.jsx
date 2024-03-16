@@ -32,14 +32,7 @@ const router = createBrowserRouter([
         path: "/menu/:filterby",
         element: <Menu />,
       },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
+
       {
         path: "/login",
         element: <LogIn />,

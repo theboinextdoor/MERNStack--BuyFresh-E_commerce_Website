@@ -43,12 +43,6 @@ const Header = () => {
             <Link to={"/menu/65eb2fb099556bc82a6c3600"} className="hover:text-indigo-700 text-black">
               Menu
             </Link>
-            <Link to={"/about"} className="hover:text-indigo-700 text-black">
-              About
-            </Link>
-            <Link to={"/contact"} className="hover:text-indigo-700 text-black">
-              Contact
-            </Link>
           </nav>
 
           {/* Login and Cart */}
@@ -56,7 +50,7 @@ const Header = () => {
             <Link to="/cart">
               <FaShoppingCart className="" />
               <div className="text-white bg-red-600 absolute -top-1 -right-1 rounded-full m-0 p-0  text-sm text-center h-4 w-4 ">
-              {castItemNumber.length}
+                {castItemNumber.length}
               </div>
             </Link>
           </div>
@@ -99,18 +93,7 @@ const Header = () => {
                   >
                     Menu
                   </Link>
-                  <Link
-                    to={"/about"}
-                    className="hover:text-indigo-700 text-black"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to={"/contact"}
-                    className="hover:text-indigo-700 text-black"
-                  >
-                    Contact
-                  </Link>
+
                 </nav>
               </div>
             )}

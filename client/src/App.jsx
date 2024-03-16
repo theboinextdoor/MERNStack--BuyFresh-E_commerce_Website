@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { productAction } from "./redux";
+import Footer from "./Component/Footer";
 
 const App = () => {
   const BACKEND_URL = import.meta.env.VITE_SERVER_URL;
@@ -36,6 +37,7 @@ const App = () => {
       <main className="pt-16 bg-slate-100 min-h-screen">
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 };
