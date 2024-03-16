@@ -8,7 +8,7 @@ import logo from "../assest/logo.png";
 const Footer = () => {
     return (
         <>
-            <div className="bg-slate-600 text-white flex gap-4 justify-between m-auto px-6 py-4  items-center ">
+            <div className="bg-slate-600 text-white  flex gap-4 justify-between m-auto px-6 py-4  items-center ">
 
                 {/* Logo and Home button */}
                 {/* <div className="cursor-pointer w-full max-w-32 ml-10">

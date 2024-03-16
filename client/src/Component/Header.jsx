@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaUserAltSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
-import logo from "../assest/logo.png";
+
 import { userAction } from "../redux";
+import buyfreshlogo from "../assest/buyFreshlogo.png"
 
 const Header = () => {
   const ADMIN_LOGIN_EMAIL_ = import.meta.env.VITE_ADMIN_EMAIl;
@@ -30,8 +31,8 @@ const Header = () => {
       {/* Company Icon  */}
       <div className="flex items-center h-full justify-between">
         <Link to="/">
-          <div className="h-10 sm:w-20 ">
-            <img src={logo} alt="company-logo" className="h-full " />
+          <div className="h-16 sm:w-20 ">
+            <img src={buyfreshlogo} alt="company-logo" className="h-full " />
           </div>
         </Link>
 
