@@ -1,13 +1,10 @@
 import { CiForkAndKnife } from "react-icons/ci";
 
-
-
-const ProductFilter = ({ category  }) => {
-  
+const ProductFilter = ({ category, onClick }) => {
   return (
-    <div className="flex flex-col " >
+    <div className="flex flex-col " onClick={onClick}>
       <div className="text-3xl p-5 bg-yellow-500 rounded-full cursor-pointer ">
-        <CiForkAndKnife  />
+        <CiForkAndKnife />
       </div>
       <p className="text-center font-medium my-1 capitalize ">{category}</p>
     </div>
@@ -15,4 +12,3 @@ const ProductFilter = ({ category  }) => {
 };
 
 export default ProductFilter;
-

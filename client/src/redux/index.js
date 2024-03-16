@@ -26,13 +26,14 @@ const userSlice = createSlice({
 
 
 const PRODUCT_INITIAL_STATE = {
-    productList : {
-        name: "",
+    productList : [
+        {name: "",
         category: "",
         image: "",
         price: "",
-        description: ""
-    }
+        description: ""}
+     ],
+     cartItems : []
 }
 
 const productSlice = createSlice({
@@ -41,6 +42,14 @@ const productSlice = createSlice({
     reducers: {
         setDataProduct: (state, action) => {
             state.productList=  [...action.payload]
+        },
+        addCartItems : (state, action) => {
+            const total = action.payload.price
+            state.cartItems = [...state.cartItems , {...action.payload, qty : 1 , total : total }]
+            console.log(action)
+        },
+        deleteCartItems : (state  , action) => {
+            console.log(action)
         }
 
     }

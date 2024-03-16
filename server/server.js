@@ -7,7 +7,6 @@ const dotenv = require('dotenv').config()
 const uri = `${process.env.MONGODB_URL}`
 
 
-
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "100mb" }))             //! KeyPoint
@@ -30,25 +29,6 @@ mongoose.connect(uri)
     })
 
 //! ************ database connection ends :- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,50 +63,12 @@ const newProductSchema = mongoose.Schema({
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //! **********Project Models starts :- 
 
 const userModel = mongoose.model("user", usersSchema)     //* User logIn Schema
 const productModel = mongoose.model("product", newProductSchema)     //* User logIn Schema
 
 //! **********Project Models ends :- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -148,15 +90,6 @@ app.get("/products", async (req, res) => {
   }
 });
 //! *********** Routing  ends:- 
-
-
-
-
-
-
-
-
-
 
 
 
@@ -217,12 +150,6 @@ app.post("/NewProducts", async (req, res) => {
 
 
 //! *********** API settings ends  :- 
-
-
-
-
-
-
 
 
 

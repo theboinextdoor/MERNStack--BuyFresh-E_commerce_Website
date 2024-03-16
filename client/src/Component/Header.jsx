@@ -12,7 +12,6 @@ const Header = () => {
   const ADMIN_LOGIN_EMAIL_ = import.meta.env.VITE_ADMIN_EMAIl;
   const dispatch = useDispatch();
   const userData = useSelector((store) => store.user);
-  const [menu, setMenu] = useState("Home");
   const [showMenu, setShowMenu] = useState(false);
 
   const handleLoginButton = () => {
@@ -36,62 +35,17 @@ const Header = () => {
 
         {/* Nav Bars */}
         <div className="flex items-center gap-4 md:gap-7">
-        <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
-            <Link
-              to={"/"}
-              onClick={() => {
-                setMenu("Home");
-              }}
-              className="hover:text-indigo-700 text-black"
-            >
-              Home
-              {menu === "Home" ? (
-                <hr className="border-2 border-b-indigo-500" />
-              ) : (
-                <></>
-              )}
+          <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
+            <Link to={"/"} className="hover:text-indigo-700 text-black">  Home
             </Link>
-            <Link
-              to={"/menu"}
-              onClick={() => {
-                setMenu("Menu");
-              }}
-              className="hover:text-indigo-700 text-black"
-            >
+            <Link to={"/menu/65eb2fb099556bc82a6c3600"} className="hover:text-indigo-700 text-black">
               Menu
-              {menu === "Menu" ? (
-                <hr className="border-2 border-b-indigo-500" />
-              ) : (
-                <></>
-              )}
             </Link>
-            <Link
-              to={"/about"}
-              onClick={() => {
-                setMenu("About");
-              }}
-              className="hover:text-indigo-700 text-black"
-            >
+            <Link to={"/about"} className="hover:text-indigo-700 text-black">
               About
-              {menu === "About" ? (
-                <hr className="border-2 border-b-indigo-500" />
-              ) : (
-                <></>
-              )}
             </Link>
-            <Link
-              to={"/contact"}
-              onClick={() => {
-                setMenu("Contact");
-              }}
-              className="hover:text-indigo-700 text-black"
-            >
+            <Link to={"/contact"} className="hover:text-indigo-700 text-black">
               Contact
-              {menu === "Contact" ? (
-                <hr className="border-2 border-b-indigo-500" />
-              ) : (
-                <></>
-              )}
             </Link>
           </nav>
 
@@ -125,67 +79,35 @@ const Header = () => {
                   className="whitespace-nowrap cursor-pointer hover:text-indigo-800"
                 >
                   {userData.user.email != "" ? (
-                    <p onClick={handleLogOutButton} className="px-2 py-1"> Logout</p>
+                    <p onClick={handleLogOutButton} className="px-2 py-1">
+
+                      Logout
+                    </p>
                   ) : (
                     <p className="px-2 py-2">LogIn</p>
                   )}
                 </Link>
-                <nav className="md:hidden gap-4 md:gap-7 text-sm md:text-lg md:flex flex flex-col px-2 py-1">
-                  <Link
-                    to={"/"}
-                    onClick={() => {
-                      setMenu("Home");
-                    }}
-                    className="hover:text-indigo-700 text-black"
-                  >
+                <nav className="md:hidden gap-4 md:gap-7 text-sm md:text-lg flex flex-col px-2 py-1">
+                  <Link to={"/"} className="hover:text-indigo-700 text-black">
                     Home
-                    {menu === "Home" ? (
-                      <hr className="border-2 border-b-indigo-500" />
-                    ) : (
-                      <></>
-                    )}
                   </Link>
                   <Link
-                    to={"/menu"}
-                    onClick={() => {
-                      setMenu("Menu");
-                    }}
+                    to={"/menu/65eb2fb099556bc82a6c3600"}
                     className="hover:text-indigo-700 text-black"
                   >
                     Menu
-                    {menu === "Menu" ? (
-                      <hr className="border-2 border-b-indigo-500" />
-                    ) : (
-                      <></>
-                    )}
                   </Link>
                   <Link
                     to={"/about"}
-                    onClick={() => {
-                      setMenu("About");
-                    }}
                     className="hover:text-indigo-700 text-black"
                   >
                     About
-                    {menu === "About" ? (
-                      <hr className="border-2 border-b-indigo-500" />
-                    ) : (
-                      <></>
-                    )}
                   </Link>
                   <Link
                     to={"/contact"}
-                    onClick={() => {
-                      setMenu("Contact");
-                    }}
                     className="hover:text-indigo-700 text-black"
                   >
                     Contact
-                    {menu === "Contact" ? (
-                      <hr className="border-2 border-b-indigo-500" />
-                    ) : (
-                      <></>
-                    )}
                   </Link>
                 </nav>
               </div>

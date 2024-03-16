@@ -17,7 +17,7 @@ const App = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/products`);
-        console.log(response.data);
+        // console.log(response.data);
         startTransition(() => {
           dispatch(productAction.setDataProduct(response.data));
         });
@@ -33,7 +33,6 @@ const App = () => {
     <>
       <Toaster />
       <Header />
-
       <main className="pt-16 bg-slate-100 min-h-screen">
         <Outlet />
       </main>
