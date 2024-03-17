@@ -13,11 +13,9 @@ const userSlice = createSlice({
     initialState: INITIAL_STATE,
     reducers: {
         reduxLogIn: (state, action) => {
-            console.log("This is an action")
-            console.log(action)
+
             state.user.email = action.payload.data.email
-            console.log("This is state: ")
-            console.log(state.user.email)
+
         },
         reduxLogOut: (state) => {
             state.user.email = ""
@@ -47,9 +45,9 @@ const productSlice = createSlice({
             state.productList = [...action.payload]
         },
         addCartItems: (state, action) => {
-            console.log(action)
+
             const existingItem = state.cartItems.some(item => item.__id === action.payload.__id);
-            console.log(existingItem)
+
             if (existingItem) {
                 toast.success("Item already added");
                 return state;
@@ -65,7 +63,7 @@ const productSlice = createSlice({
         },
         deleteCartItems: (state, action) => {
             const itemIdToDelete = action.payload;
-            console.log(action)
+
             state.cartItems = state.cartItems.filter(item => item.__id !== itemIdToDelete);
             toast.error("One Item is Deleted");
         },

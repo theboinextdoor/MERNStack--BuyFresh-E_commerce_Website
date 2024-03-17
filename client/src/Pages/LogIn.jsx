@@ -38,7 +38,7 @@ const LogIn = () => {
 
     try {
       const response = await axios.post(`${BACKEND_URL}/login`, formData);
-      console.log(response.data);
+      
       toast.success("Log in succesfully");
       
 
@@ -56,8 +56,8 @@ const LogIn = () => {
         naviagte("/");
       }, 1000);
     } catch (error) {
-      console.error( error);
-      // console.log(error.response.data.message);
+      
+      
       if (error.response.data.message === `Password didn't match`) {
         setNotCorrectPassword(false);
         setEmailExist(true);

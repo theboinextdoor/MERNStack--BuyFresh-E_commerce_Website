@@ -36,16 +36,16 @@ const NewProducts = () => {
 
     try{
         const response = await axios.post(`${BACKEND_URL}/NewProducts`, formData)
-        console.log(response.data)
+        
         toast.success("Product uploaded succesfully")
     }catch(error) {
-      // console.log(error)
+     
       toast.error("Something Went wrong")
     }
 
     
 
-      console.log(formData);
+   
       setImageData('');
 
       (name.current.value = ""),

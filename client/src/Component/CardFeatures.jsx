@@ -12,7 +12,7 @@ const CardFeatures = ({name, category, image, price, loading , id}) => {
       category : category,
       image : image
     }))
-    // alert("Heyyy")
+  
   }
   return (
     <div className="w-full min-w-[200px] max-w-[200px] py-4 px-4 bg-white cursor-pointer drop-shadow-xl hover:shadow-2xl flex flex-col items-center rounded-2xl">

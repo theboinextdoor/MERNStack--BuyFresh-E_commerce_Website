@@ -9,7 +9,7 @@ const AllProduct = ({ heading  }) => {
   const productdata = useSelector((store) => store.product.productList);
 
   const categoryList = [...new Set(productdata.map((el) => el.category))];
-  // console.log(categoryList);
+  
 
   const [activeProduct , setActiveProduct] = useState("")
   const [datafilter, setDataFilter] = useState([]);
@@ -27,7 +27,7 @@ const AllProduct = ({ heading  }) => {
     setDataFilter(() => {
       return [...filter];
     });
-    // console.log("Button Clicked");
+    
   };
   return (
     <div className="my-5 p-4 ">

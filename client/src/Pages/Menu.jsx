@@ -16,7 +16,7 @@ const Menu = () => {
 
   const handleAddCartProduct = () => {
     dispatch(productAction.addCartItems(productDisplay))
-    // alert("Heyyy")
+    
   }
 
   
