@@ -7,8 +7,6 @@ import { Provider } from "react-redux";
 
 import Home from "./Pages/Home.jsx";
 import Menu from "./Pages/Menu.jsx";
-import About from "./Pages/About.jsx";
-import Contact from "./Pages/Contact.jsx";
 import LogIn from "./Pages/LogIn.jsx";
 import Cart from "./Pages/Cart.jsx";
 import NewProducts from "./Pages/NewProducts.jsx";

@@ -1,10 +1,14 @@
 import { MdDirectionsBike } from "react-icons/md";
 import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
-import HomeCard from "../Component/HomeCard";
+import { useRef } from "react";
 import { useSelector } from "react-redux";
+
+
+
+
+import HomeCard from "../Component/HomeCard";
 import CardFeatures from "../Component/CardFeatures";
 import Loading from "../Component/Loading";
-import { useRef } from "react";
 import AllProduct from "../Component/AllProduct";
 
 const Home = () => {
@@ -104,7 +108,7 @@ const Home = () => {
         >
           {VegetableCardList.map((el) => (
             <CardFeatures
-              key={el._id + "vegetable"}
+              key={el._id }
               id={el._id}
               name={el.name}
               category={el.category}

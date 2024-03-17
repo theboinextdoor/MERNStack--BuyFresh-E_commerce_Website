@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const HomeCard = ({ image, name, price, category, id, loading }) => {
   return (
-    <div className="bg-white shadow-2xl drop-shadow-2xl p-4 rounded-lg cursor-pointer min-w-[150px] ">
+    <div className="bg-white shadow-2xl shadow-orange-200 drop-shadow-2xl  p-4 rounded-lg cursor-pointer min-w-[150px] ">
 
       {name ?
 
