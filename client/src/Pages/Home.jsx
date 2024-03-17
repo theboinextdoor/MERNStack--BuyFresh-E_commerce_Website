@@ -4,7 +4,7 @@ import HomeCard from "../Component/HomeCard";
 import { useSelector } from "react-redux";
 import CardFeatures from "../Component/CardFeatures";
 import Loading from "../Component/Loading";
-import {   useRef } from "react";
+import { useRef } from "react";
 import AllProduct from "../Component/AllProduct";
 
 const Home = () => {
@@ -16,12 +16,12 @@ const Home = () => {
   const loadingArrayFeature = new Array(10).fill(null);
 
   const homeProductCardList = productdata.slice(20, 24)
-  const VegetableCardList =  productdata.filter((el) => el.category === "vegetable")
-  
+  const VegetableCardList = productdata.filter((el) => el.category === "vegetable")
 
-    
 
- 
+
+
+
 
   const nextProduct = () => {
     slideProduct.current.scrollLeft += 200;
@@ -31,6 +31,11 @@ const Home = () => {
     slideProduct.current.scrollLeft -= 200;
   };
 
+  const handleOrderNowButton = () => {
+    window.scrollTo({top: 450, behavior:"smooth"})
+
+  }
+  
 
   return (
     <div className="p-2 md:p-4">
@@ -41,19 +46,15 @@ const Home = () => {
             <MdDirectionsBike className="h-7" />
           </div>
           <h2 className="text-4xl font-bold md:text-7xl py-3 ">
-            The Fastest Delivery
-            <span className="text-indigo-600"> to your Home </span>
+          Freshness Delivered 
+            <span className="text-indigo-600"> to Your Doorstep!</span>
           </h2>
-          <p className="py-3 text-base">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta,
-            corrupti voluptas molestiae harum sapiente ullam unde veniam ut quas
-            sequi? Id ea aperiam nesciunt eveniet neque libero commodi
-            laboriosam distinctio, necessitatibus ipsam! Quae corrupti, aliquam
-            tempore minima a repellat, blanditiis iure dignissimos modi numquam
-            molestiae praesentium asperiores voluptatibus omnis? Doloremque,
-            maxime alias.
+          <p className="py-3 text-lg">
+            Buyfresh is your ultimate destination for purchasing farm-fresh products conveniently delivered to your doorstep. Our ecommerce platform offers a diverse range of fresh produce, including fruits, vegetables, dairy, meat, and more, sourced directly from local farms and trusted suppliers.
+
+            In a fast-paced world where convenience often overshadows quality, Buyfresh is committed to bringing the freshness of farm-to-table goodness directly to your doorstep. Experience the difference fresh products can make in your life with Buyfresh where quality, taste, and convenience meet
           </p>
-          <button className="font-bold bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-500  ">
+          <button onClick={handleOrderNowButton} className="font-bold bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-500  ">
             Order Now
           </button>
         </div>
@@ -118,9 +119,9 @@ const Home = () => {
         </div>
       </div>
 
-     <AllProduct heading={"Your Product"} />
+      <AllProduct heading={"Your Product"} />
 
-      
+
     </div>
   );
 };
