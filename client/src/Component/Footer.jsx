@@ -2,7 +2,6 @@ import { SiLeetcode } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io5";
 import { SiGmail } from "react-icons/si";
-import logo from "../assest/logo.png";
 
 
 const Footer = () => {

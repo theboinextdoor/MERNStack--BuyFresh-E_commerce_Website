@@ -21,12 +21,7 @@ const PORT = process.env.PORT || 8080;
 
 mongoose.set("strictQuery", false)
 mongoose.connect(uri)
-    .then(() => {
-        console.log("Connected to the database")
-    })
-    .catch((err) => {
-        console.log("Some error Occured", err)
-    })
+    
 
 //! ************ database connection ends :- 
 
@@ -85,7 +80,7 @@ app.get("/products", async (req, res) => {
     const data = await productModel.find({});
     res.send(JSON.stringify(data));
   } catch (error) {
-    console.error("Error fetching products:", error);
+    
     res.status(500).send("Error fetching products");
   }
 });
@@ -109,7 +104,7 @@ app.post("/signup", async (req, res) => {
             res.send({ message: "Successfully signed up", alert: false });
         }
     } catch (error) {
-        console.error("Error signing up:", error);
+      
         return res.status(500).json({ message: "Internal server error", alert: false });
     }
 });
@@ -123,7 +118,7 @@ app.post("/login", async (req, res) => {
     try {
         const existingUser = await userModel.findOne({ email: email });
         const userPassword = await userModel.findOne({ $and: [{ email: email }, { password: password }] })
-        console.log(userPassword)
+       
         if (existingUser) {
             if (userPassword) {
                 res.send({ message: "Logged in", alert: true, data: req.body });
@@ -134,7 +129,7 @@ app.post("/login", async (req, res) => {
             return res.status(404).json({ message: "User is not signed up", alert: false });
         }
     } catch (error) {
-        // console.error("Error logging in:", error);
+        
         return res.status(500).json({ message: "Internal server error", alert: false });
     }
 });
@@ -142,7 +137,7 @@ app.post("/login", async (req, res) => {
 
 //* Save New Product API:-
 app.post("/NewProducts", async (req, res) => {
-    console.log(req.body)
+    
     const data = await productModel(req.body)
     const datasave = await data.save()        //* save the req body into the database
     res.send({ message: "Succesfully added new Product", alert: true, data: req.body }).status(200);
@@ -155,4 +150,4 @@ app.post("/NewProducts", async (req, res) => {
 
 
 
-app.listen(PORT, () => console.log(`Server is running on PORT num:- ${PORT}`))
+app.listen(PORT)
